@@ -74,12 +74,13 @@ export class FastServer{
         let app = this.APP;
         let port = this.config.SERVER_PORT;
         let host = this.config.HOST || "0.0.0.0"
-        app.listen({ port: port, hostname: host }, () => {
+        const server =app.listen({ port: port, hostname: host }, () => {
           console.log(
             "success",
             `server is running in ${this.config.SERVER_TYPE} mode and on port ${port} `
           );
         });
+        return server
       }
     
       public ACTIVE_CORS() {
@@ -101,6 +102,7 @@ export class FastServer{
             `WS Server is running on port ${JSON.stringify(address)}`
           );
         });
+        return ws_server
       }
     
       public ACTIVE_SHARE_FOLDERS(foldername: string) {
