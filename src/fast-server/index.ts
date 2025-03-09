@@ -73,7 +73,8 @@ export class FastServer{
       public LISTEN() {
         let app = this.APP;
         let port = this.config.SERVER_PORT;
-        app.listen(port, () => {
+        let host = this.config.HOST || "0.0.0.0"
+        app.listen({ port: port, hostname: host }, () => {
           console.log(
             "success",
             `server is running in ${this.config.SERVER_TYPE} mode and on port ${port} `
@@ -91,8 +92,9 @@ export class FastServer{
         let app = this.APP;
     
         let port = this.config.WS_PORT
+        let host = this.config.HOST || "0.0.0.0"
         const ws_server = createServer(app);
-        ws_server.listen({ port: port, hostname: "0.0.0.0" }, () => {
+        ws_server.listen({ port: port, hostname: host }, () => {
           const address = ws_server.address();
           console.log(
             "info",

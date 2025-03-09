@@ -27,6 +27,7 @@ export enum serverType{
 }
 
 export type ServerConfig={
+    HOST?:string;
     SERVER_PORT:number;
     WS_PORT?:number;
     SERVER_TYPE:serverType,
